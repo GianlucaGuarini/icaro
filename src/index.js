@@ -66,8 +66,7 @@ const ICARO_HANDLER = {
         target[property] = value
       }
     }
-
-    return value
+    return true
   }
 }
 
