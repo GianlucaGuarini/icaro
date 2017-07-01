@@ -4,6 +4,7 @@
 	(global.icaro = factory());
 }(this, (function () { 'use strict';
 
+// fork of https://github.com/YuzuJS/setImmediate
 ((function (global) {
   if (global.setImmediate) {
     return
@@ -113,6 +114,7 @@ const API = {
   listen(fn) {
     if (!listeners.has(this)) listeners.set(this, []);
     listeners.get(this).push(fn);
+
     return this
   },
 
@@ -130,6 +132,7 @@ const API = {
     } else {
       listeners.set(this, []);
     }
+
     return this
   },
 
@@ -161,6 +164,7 @@ const ICARO_HANDLER = {
         target[property] = value;
       }
     }
+
     return true
   }
 };
