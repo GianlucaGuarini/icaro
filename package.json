@@ -1,7 +1,7 @@
 {
   "name": "icaro",
   "version": "0.0.1",
-  "description": "icaro makes DOM state transitions easier",
+  "description": "Smart and efficient javascript object observer, ideal for batching DOM updates",
   "main": "icaro.js",
   "module": "src/index.js",
   "main:next": "src/index.js",
