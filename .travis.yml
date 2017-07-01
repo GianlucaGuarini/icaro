@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - 6
+
+branches:
+  only:
+    - master
+    - dev
+
+script:
+  npm run build && npm test
+
+sudo: false
+
+cache:
+  directories:
+    - node_modules
+
+notifications:
+    email: false

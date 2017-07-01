@@ -1,0 +1,22 @@
+{
+  "name": "icaro",
+  "version": "2.0.1",
+  "description": "icaro makes DOM state transitions easier",
+  "main": "icaro.js",
+  "module": "src/index.js",
+  "main:next": "src/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "build": "rollup -c rollup.config.js > icaro.js",
+    "test": "npm run lint && ./node_modules/.bin/mocha test",
+    "lint": "eslint src test"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-riot": "^1.0.0",
+    "mocha": "^3.4.2",
+    "rollup": "^0.41.6"
+  },
+  "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
+  "license": "MIT"
+}

@@ -1,0 +1,6 @@
+{
+  "extends": "eslint-config-riot",
+  "rules": {
+    "no-bitwise": "off"
+  }
+}
