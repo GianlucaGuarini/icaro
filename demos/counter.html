@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='../icaro.js'></script>
+  </head>
+  <body>
+    <div id='display'></div>
+    <script>
+      const counter = icaro({ value: 0 })
+      // automatically triggered ;)
+      function update() {
+        display.innerHTML = counter.value
+      }
+
+      // listen the coordinate updates
+      counter.listen(update)
+
+      (function loop() {
+        counter.value ++
+        requestAnimationFrame(loop)
+      }())
+    </script>
+  </body>
+</html>

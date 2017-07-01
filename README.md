@@ -1,5 +1,5 @@
 # icaro
-Smart and efficient javascript object observer
+Smart and efficient javascript object observer, ideal for batching DOM updates
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-version-image]][npm-url]
@@ -35,9 +35,14 @@ Via commonjs
 const icaro = require('icaro')
 ```
 
+# Demos
+
+- [The Canvas](https://cdn.rawgit.com/GianlucaGuarini/icaro/master/demos/canvas.html)
+- [The Counter](https://cdn.rawgit.com/GianlucaGuarini/icaro/master/demos/counter.html)
+
 # Usage
 
-Icaro will let you listen all the changes happening in a javascript object or array grouping them efficiently optimizing the performances of your listeners
+`icaro` will let you listen all the changes happening in a javascript object or array grouping them efficiently optimizing the performances of your listeners
 
 ```js
 
@@ -57,7 +62,7 @@ obj.baz = 'dude'
 
 ```
 
-Icaro will let you listen also nested object, all the non primitive properties added to an icaro object will be automatically converted into icaro observable objects
+`icaro` will let you listen also nested object, all the non primitive properties added to an `icaro` object will be automatically converted into `icaro` observable objects
 
 ```js
 const obj = icaro({})
@@ -78,7 +83,7 @@ obj.nested.someVal = 'hello'
 
 ```
 
-Icaro is able also to listen changes in arrays but only when their length changes
+`icaro` is able also to listen changes in arrays but only when their length changes
 
 ```js
 
@@ -98,9 +103,12 @@ arr.push('bar')
 arr.map(v => v + '-meh')
 
 ```
+
+You can also avoid to unsubscribe your callbacks because `icaro` will automatically unlisten them if the object bound to them will be garbage collected
+
 # API
 
-Any icaro call will return a Proxy with the following api methods
+Any `icaro` call will return a Proxy with the following api methods
 
 ## icaro.listen(callback)
 
@@ -116,7 +124,7 @@ __@returns self__
 
 ## icaro.toJSON
 
-Return all data contained in an icaro Proxy as JSON object
+Return all data contained in an `icaro` Proxy as JSON object
 
 __@returns HTMLElement__
 

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src='../icaro.js'></script>
+  </head>
+  <body>
+    <canvas id='canvas'></canvas>
+    <script>
+      const squareSize = 10
+      const ctx = canvas.getContext('2d')
+      const coordinates = icaro({ x: 0, y: 0 })
+      canvas.width = window.innerWidth
+      canvas.height = window.innerHeight
+
+      function getPointerEvent(e) {
+        return e.targetTouches ? e.targetTouches[0] : e
+      }
+
+      // automatically triggered ;)
+      function update() {
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight)
+        ctx.fillRect(
+          coordinates.x - squareSize,
+          coordinates.y - squareSize,
+          squareSize,
+          squareSize
+        );
+      }
+
+      function onMove(e) {
+        const pointer = getPointerEvent(e)
+        coordinates.x = pointer.clientX
+        coordinates.y = pointer.clientY
+      }
+
+      window.addEventListener('mousemove', onMove)
+      window.addEventListener('touchmove', onMove)
+
+      // listen the coordinate updates
+      coordinates.listen(update)
+    </script>
+  </body>
+</html>
