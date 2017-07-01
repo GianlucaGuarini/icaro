@@ -1,6 +1,6 @@
 {
   "name": "icaro",
-  "version": "0.0.2",
+  "version": "1.0.0",
   "description": "Smart and efficient javascript object observer, ideal for batching DOM updates",
   "main": "icaro.js",
   "module": "src/index.js",
