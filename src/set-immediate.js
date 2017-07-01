@@ -1,3 +1,4 @@
+// fork of https://github.com/YuzuJS/setImmediate
 ((function (global) {
   if (global.setImmediate) {
     return

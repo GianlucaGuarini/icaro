@@ -100,7 +100,7 @@ arr.map(v => v + '-meh')
 ```
 # API
 
-Any icaro call will return an Proxy with the following api methods
+Any icaro call will return a Proxy with the following api methods
 
 ## icaro.listen(callback)
 

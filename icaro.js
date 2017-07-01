@@ -151,7 +151,7 @@ const API = {
  * @type {Object}
  */
 const ICARO_HANDLER = {
-  set(target, property, value, receiver) {
+  set(target, property, value) {
     // filter the values that didn't change
     if (target[property] !== value) {
       target[dispatch](property, value);
@@ -161,8 +161,7 @@ const ICARO_HANDLER = {
         target[property] = value;
       }
     }
-
-    return value
+    return true
   }
 };
 
