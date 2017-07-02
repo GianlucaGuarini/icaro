@@ -64,7 +64,7 @@ obj.listen(function(changes) {
 })
 
 obj.foo = 'hi'
-obj.bar = 'dear'
+obj.bar = 'there'
 obj.baz = 'dude'
 
 ```
