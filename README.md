@@ -83,15 +83,15 @@ obj.nested.someVal = 'hello'
 
 ```
 
-`icaro` is able also to listen changes in arrays but only when their length changes
+`icaro` is able also to listen changes in arrays
 
 ```js
 
 const arr = icaro([])
 
+// here you will get the name of the event that changed your array
 arr.listen(function(changes) {
-  console.log(changes.get('0')) // foo
-  console.log(changes.get('1')) // bar
+  console.log(changes.get('push')) // ['foo', 'bar']
   // kill all the listeners
   arr.unlisten()
 })
@@ -99,7 +99,7 @@ arr.listen(function(changes) {
 arr.push('foo')
 arr.push('bar')
 
-// no events here
+// dispatch with "map"
 arr.map(v => v + '-meh')
 
 ```

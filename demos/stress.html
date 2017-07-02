@@ -8,25 +8,25 @@
     <script>
       let rowsAmount = 100
       const create = document.createElement.bind(document)
-      const data = []
+      const data = icaro({ items: [] })
+      const cells = []
       const fragment = document.createDocumentFragment()
 
-      function updateRow(colData, col) {
-        col.textContent = colData.value
+      function updateRows() {
+        data.items.forEach(function(rowsData, i) {
+          rowsData.forEach(function(colData, j) {
+            cells[i][j].textContent = colData.value
+          })
+        })
       }
 
       function createRow() {
         const row = create('tr')
-        const cols = [create('td'), create('td'), create('td')]
-        const dataSet = icaro([{ value: Math.random() }, { value: Math.random() }, { value: Math.random() }])
-        data.push(dataSet)
-
-        dataSet.forEach(function(colData, i) {
-          updateRow(colData, cols[i])
-          colData.listen(updateRow.bind(null, colData, cols[i]))
-        })
-
-        cols.forEach(c => row.appendChild(c))
+        const tds = [create('td'), create('td'), create('td')]
+        const dataSet = [{ value: Math.random() }, { value: Math.random() }, { value: Math.random() }]
+        tds.forEach(c => row.appendChild(c))
+        data.items.push(dataSet)
+        cells.push(tds)
         return row
       }
 
@@ -34,12 +34,14 @@
         fragment.appendChild(createRow())
       }
 
+      updateRows()
       display.appendChild(fragment)
+      data.listen(updateRows)
 
       ;(function loop() {
-        data.forEach(function(dataSet) {
-          dataSet.forEach(function(colData) {
-            colData.value = Math.random()
+        data.items = data.items.map(function(dataSet) {
+          return dataSet.map(function() {
+            return { value: Math.random() }
           })
         })
         requestAnimationFrame(loop)

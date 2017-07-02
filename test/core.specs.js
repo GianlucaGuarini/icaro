@@ -33,8 +33,7 @@ describe('icaro core', () => {
 
     i.arr = []
     i.arr.listen(function(changes) {
-      assert.equal(changes.get('0'), 'one')
-      assert.equal(changes.get('1'), 'two')
+      assert.ok(changes.get('push'))
       done()
     })
 
@@ -42,9 +41,26 @@ describe('icaro core', () => {
     i.arr.push('two')
   })
 
+  it('the toJSON call return properly either an object or an array', function() {
+    const arr = icaro([1, 2])
+    const obj = icaro({ uno: 1, due: 2 })
+
+    assert.deepEqual(arr.toJSON(), [1, 2])
+    assert.deepEqual(obj.toJSON(), { uno: 1, due: 2 })
+  })
+
 
   it('array values should be listenable if objects', function() {
     const i = icaro([{ value: 'foo' }])
     assert.ok(i[0].listen)
+  })
+
+  it('array native methods will dispatch changes', function(done) {
+    const i = icaro(['foo', 'bar'])
+    i.listen(function(changes) {
+      assert.ok(changes.get('map'))
+      done()
+    })
+    i.map(v => v + '-meh')
   })
 })

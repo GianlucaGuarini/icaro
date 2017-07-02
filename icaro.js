@@ -98,8 +98,46 @@
 
 const listeners = new WeakMap();
 const dispatch = Symbol();
+const isIcaro = Symbol();
 const timer = Symbol();
+const isArray = Symbol();
 const changes = Symbol();
+
+const ARRAY_METHODS_TO_REMAP = [
+  ['map', 1],
+  ['sort', 1],
+  ['reverse', 1],
+  ['pop', 1],
+  ['push', 1],
+  ['shift', 1],
+  ['slice', 0],
+  ['from', 0],
+  ['isArray', 0],
+  ['of', 0],
+  ['concat', 0],
+  ['copyWithin', 0],
+  ['entries', 0],
+  ['every', 0],
+  ['fill', 0],
+  ['filter', 0],
+  ['find', 0],
+  ['findIndex', 0],
+  ['forEach', 0],
+  ['includes', 0],
+  ['indexOf', 0],
+  ['join', 0],
+  ['keys', 0],
+  ['lastIndexOf', 0],
+  ['reduce', 0],
+  ['reduceRight', 0],
+  ['some', 0],
+  ['splice', 0],
+  ['toLocaleString', 0],
+  ['toSource', 0],
+  ['toString', 0],
+  ['unshift', 0],
+  ['values', 0]
+];
 
 /**
  * Public api
@@ -141,11 +179,11 @@ const API = {
    * @returns {Object} - simple json object from a Proxy
    */
   toJSON() {
-    return Object.keys(this).reduce(function(ret, key) {
+    return Object.keys(this).reduce((ret, key) => {
       const value = this[key];
       ret[key] = value && value.toJSON ? value.toJSON() : value;
       return ret
-    }, {})
+    }, this[isArray] ? [] : {})
   }
 };
 
@@ -158,7 +196,7 @@ const ICARO_HANDLER = {
     // filter the values that didn't change
     if (target[property] !== value) {
       target[dispatch](property, value);
-      if (value === Object(value)) {
+      if (value === Object(value) && !value[isIcaro]) {
         target[property] = icaro(value);
       } else {
         target[property] = value;
@@ -170,6 +208,27 @@ const ICARO_HANDLER = {
 };
 
 /**
+ * Define a private property
+ * @param   {*} obj - receiver
+ * @param   {String} key - property name
+ * @param   {*} value - value to set
+ */
+function define(obj, key, value) {
+  Object.defineProperty(obj, key, {
+    value:  value,
+    enumerable: false,
+    configurable: false,
+    writable: false
+  });
+}
+
+function handleArrayMethod({ obj, method, shouldDispatch, originalMethod }, ...args) {
+  const ret = originalMethod.apply(obj, args);
+  if (shouldDispatch) obj[dispatch](method, obj);
+  return ret
+}
+
+/**
  * Enhance the icaro objects adding some hidden props to them and the API methods
  * @param   {*} obj - anything
  * @returns {*} the object received enhanced with some extra properties
@@ -179,6 +238,7 @@ function enhance(obj) {
   Object.assign(obj, {
     [changes]: new Map(),
     [timer]: null,
+    [isIcaro]: true,
     [dispatch](property, value) {
       if (listeners.has(obj)) {
         clearImmediate(obj[timer]);
@@ -193,15 +253,25 @@ function enhance(obj) {
 
   // Add the API methods bound to the original object
   Object.keys(API).forEach(function(key) {
-    obj[key] = API[key].bind(obj);
+    define(obj, key, API[key].bind(obj));
   });
 
-  // remap values
+  // remap values and methods
   if (Array.isArray(obj)) {
+    obj[isArray] = true;
+    // remap the inital array values
     obj.forEach(function(item, i) {
-      // remove temporarily the value in order to skip the icaro filters
       obj[i] = null;
       ICARO_HANDLER.set(obj, i, item);
+    });
+
+    ARRAY_METHODS_TO_REMAP.forEach(function([method, shouldDispatch]) {
+      define(obj, method, handleArrayMethod.bind(null, {
+        obj,
+        method,
+        shouldDispatch,
+        originalMethod: obj[method]
+      }));
     });
   }
 
