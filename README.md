@@ -1,5 +1,5 @@
 # icaro
-Smart and efficient javascript object observer, ideal for batching DOM updates
+Smart and efficient javascript object observer, ideal for batching DOM updates (less than 1kb)
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-version-image]][npm-url]
