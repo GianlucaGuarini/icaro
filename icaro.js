@@ -71,11 +71,7 @@
       }
     };
 
-    if (global.addEventListener) {
-      global.addEventListener('message', onGlobalMessage, false);
-    } else {
-      global.attachEvent('onmessage', onGlobalMessage);
-    }
+    global.addEventListener('message', onGlobalMessage, false);
 
     registerImmediate = handle => {
       global.postMessage(messagePrefix + handle, '*');
