@@ -54,6 +54,9 @@ obj.listen(function(changes) {
   console.log(changes.get('foo')) // 'hi'
   console.log(changes.get('bar')) // 'there'
   console.log(changes.get('baz')) // 'dude'
+
+  // kill all the listeners
+  obj.unlisten()
 })
 
 obj.foo = 'hi'
@@ -87,20 +90,28 @@ obj.nested.someVal = 'hello'
 
 ```js
 
+// Here a bit of hardcore async stuff
+
 const arr = icaro([])
 
 // here you will get the name of the event that changed your array
 arr.listen(function(changes) {
   console.log(changes.get('push')) // ['foo', 'bar']
-  // kill all the listeners
+  // kill all the listeners this included
   arr.unlisten()
+
+  // add a brand new listener recursively.. why not?
+  arr.listen(function(changes) {
+    console.log(changes.get('map')) // ['foo-meh', 'bar-meh']
+  })
+
+  // dispatch with "map"
+  arr.map(v => v + '-meh')
 })
 
+// initial dispatch
 arr.push('foo')
 arr.push('bar')
-
-// dispatch with "map"
-arr.map(v => v + '-meh')
 
 ```
 
