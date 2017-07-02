@@ -196,6 +196,14 @@ function enhance(obj) {
     obj[key] = API[key].bind(obj);
   });
 
+  // remap values
+  if (Array.isArray(obj)) {
+    obj.forEach(function(item, i) {
+      obj[i] = null;
+      ICARO_HANDLER.set(obj, i, item);
+    });
+  }
+
   return obj
 }
 

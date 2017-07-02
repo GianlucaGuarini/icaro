@@ -17,6 +17,14 @@
     "mocha": "^3.4.2",
     "rollup": "^0.41.6"
   },
+  "keywords": [
+    "observable",
+    "proxy",
+    "object listener",
+    "streams",
+    "object observable",
+    "object watch"
+  ],
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT"
 }

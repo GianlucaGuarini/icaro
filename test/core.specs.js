@@ -41,4 +41,10 @@ describe('icaro core', () => {
     i.arr.push('one')
     i.arr.push('two')
   })
+
+
+  it('array values should be listenable if objects', function() {
+    const i = icaro([{ value: 'foo' }])
+    assert.ok(i[0].listen)
+  })
 })

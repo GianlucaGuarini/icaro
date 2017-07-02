@@ -15,7 +15,7 @@
       // listen the coordinate updates
       counter.listen(update)
 
-      (function loop() {
+      ;(function loop() {
         counter.value ++
         requestAnimationFrame(loop)
       }())
