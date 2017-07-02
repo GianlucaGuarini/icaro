@@ -25,6 +25,10 @@
     "object observable",
     "object watch"
   ],
+  "files": [
+    "src",
+    "icaro.js",
+  ],
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT"
 }

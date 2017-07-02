@@ -6,7 +6,7 @@ Smart and efficient javascript object observer, ideal for batching DOM updates
 [![NPM downloads][npm-downloads-image]][npm-url]
 [![MIT License][license-image]][license-url]
 
-<img src='./image.jpg' width='100%' />
+<img src='https://raw.githubusercontent.com/GianlucaGuarini/icaro/master/image.jpg' width='100%' />
 
 # Installation
 
@@ -39,6 +39,7 @@ const icaro = require('icaro')
 
 - [The Canvas](https://cdn.rawgit.com/GianlucaGuarini/icaro/master/demos/canvas.html)
 - [The Counter](https://cdn.rawgit.com/GianlucaGuarini/icaro/master/demos/counter.html)
+- [The Stress](https://cdn.rawgit.com/GianlucaGuarini/icaro/master/demos/stress.html)
 
 # Usage
 
@@ -61,7 +62,7 @@ obj.baz = 'dude'
 
 ```
 
-`icaro` will let you listen also nested object, all the non primitive properties added to an `icaro` object will be automatically converted into `icaro` observable objects
+`icaro` will let you also listen nested object, all the non primitive properties added to an `icaro` object will be automatically converted into `icaro` observable objects
 
 ```js
 const obj = icaro({})
@@ -131,7 +132,7 @@ __@returns Object__
 
 `icaro` uses advanced es6 fetatures like [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy), [WeakMaps](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/WeakMap), [Maps](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Symbols](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol) and __it targets only modern browsers__
 
-
+All major evergreen browsers (Edge, Chrome, Safari, Firefox) [should be supported](http://caniuse.com/#search=Proxy)
 
 [travis-image]:https://img.shields.io/travis/GianlucaGuarini/icaro.svg?style=flat-square
 [travis-url]:https://travis-ci.org/GianlucaGuarini/icaro

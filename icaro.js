@@ -199,6 +199,7 @@ function enhance(obj) {
   // remap values
   if (Array.isArray(obj)) {
     obj.forEach(function(item, i) {
+      // remove temporarily the value in order to skip the icaro filters
       obj[i] = null;
       ICARO_HANDLER.set(obj, i, item);
     });
