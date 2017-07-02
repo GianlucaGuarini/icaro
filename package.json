@@ -6,7 +6,7 @@
   "module": "src/index.js",
   "main:next": "src/index.js",
   "scripts": {
-    "prepublish": "npm run build",
+    "prepublish": "npm run build && sed -i .bak 's/v\\([0-9]\\.[0-9]\\.[0-9]\\)/'`git tag | tail -n1`'/' README.md",
     "build": "rollup -c rollup.config.js > icaro.js",
     "test": "npm run lint && ./node_modules/.bin/mocha test",
     "lint": "eslint src test"
@@ -27,7 +27,7 @@
   ],
   "files": [
     "src",
-    "icaro.js",
+    "icaro.js"
   ],
   "author": "Gianluca Guarini <gianluca.guarini@gmail.com> (http://gianlucaguarini.com)",
   "license": "MIT"
