@@ -41,6 +41,10 @@ const icaro = require('icaro')
 - [The Counter](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.1.2/demos/counter.html)
 - [The Stress](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.1.2/demos/stress.html)
 
+# Performance
+
+`icaro` is really fast [compared to the other reactive libs](https://github.com/GianlucaGuarini/reactive-libs-bench) because it throttles smartly all the state changes
+
 # Usage
 
 `icaro` will let you listen all the changes happening in a javascript object or array grouping them efficiently optimizing the performances of your listeners
