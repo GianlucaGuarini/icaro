@@ -222,6 +222,15 @@ function define(obj, key, value) {
   });
 }
 
+/**
+ * Handle also array changes
+ * @param   {array}    options.obj    - array to modify
+ * @param   {string}   options.method - method name we want to use to modify the array
+ * @param   {boolean}  options.shouldDispatch - will the method trigger a dispatch?
+ * @param   {function} options.originalMethod - original array method
+ * @param   {array} args - arguments to proxy to the original array method
+ * @returns {*} whatever the array method natively returns
+ */
 function handleArrayMethod({ obj, method, shouldDispatch, originalMethod }, ...args) {
   const ret = originalMethod.apply(obj, args);
   if (shouldDispatch) obj[dispatch](method, obj);
