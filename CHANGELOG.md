@@ -1,3 +1,7 @@
+# 1.1.1
+
+- _fixed_: removed `Array.map` from the dispatcher methods
+
 # 1.1.0
 
 - _added_: let the array native methods dispatch events

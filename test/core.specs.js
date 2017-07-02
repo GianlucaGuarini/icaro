@@ -55,12 +55,12 @@ describe('icaro core', () => {
     assert.ok(i[0].listen)
   })
 
-  it('array native methods will dispatch changes', function(done) {
+  it('mutational array native methods will dispatch changes', function(done) {
     const i = icaro(['foo', 'bar'])
     i.listen(function(changes) {
-      assert.ok(changes.get('map'))
+      assert.ok(changes.get('reverse'))
       done()
     })
-    i.map(v => v + '-meh')
+    i.reverse()
   })
 })

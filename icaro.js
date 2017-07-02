@@ -103,13 +103,13 @@ const timer = Symbol();
 const isArray = Symbol();
 const changes = Symbol();
 
-const ARRAY_METHODS_TO_REMAP = [
-  ['map', 1],
+const METHODS_TO_REMAP = [
   ['sort', 1],
   ['reverse', 1],
   ['pop', 1],
   ['push', 1],
   ['shift', 1],
+  ['map', 0],
   ['slice', 0],
   ['from', 0],
   ['isArray', 0],
@@ -274,7 +274,7 @@ function enhance(obj) {
       ICARO_HANDLER.set(obj, i, item);
     });
 
-    ARRAY_METHODS_TO_REMAP.forEach(function([method, shouldDispatch]) {
+    METHODS_TO_REMAP.forEach(function([method, shouldDispatch]) {
       define(obj, method, handleArrayMethod.bind(null, {
         obj,
         method,

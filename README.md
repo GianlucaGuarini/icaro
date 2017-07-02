@@ -102,11 +102,11 @@ arr.listen(function(changes) {
 
   // add a brand new listener recursively.. why not?
   arr.listen(function(changes) {
-    console.log(changes.get('map')) // ['foo-meh', 'bar-meh']
+    console.log(changes.get('reverse')) // ['bar', 'foo']
   })
 
-  // dispatch with "map"
-  arr.map(v => v + '-meh')
+  // dispatch with "reverse"
+  arr.reverse()
 })
 
 // initial dispatch
