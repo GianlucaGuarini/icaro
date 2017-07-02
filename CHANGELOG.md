@@ -1,3 +1,7 @@
+# 1.1.2
+
+- _fixed_: dispatch the observer events after the changing property is set
+
 # 1.1.1
 
 - _fixed_: removed `Array.map` from the dispatcher methods

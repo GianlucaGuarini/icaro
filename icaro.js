@@ -195,12 +195,12 @@ const ICARO_HANDLER = {
   set(target, property, value) {
     // filter the values that didn't change
     if (target[property] !== value) {
-      target[dispatch](property, value);
       if (value === Object(value) && !value[isIcaro]) {
         target[property] = icaro(value);
       } else {
         target[property] = value;
       }
+      target[dispatch](property, value);
     }
 
     return true
