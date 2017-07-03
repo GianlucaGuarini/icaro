@@ -90,7 +90,7 @@ obj.nested.someVal = 'hello'
 
 ```
 
-`icaro` is able also to listen changes in arrays
+`icaro` is able also to listen changes in arrays. All the items index position or the mutational eventes like `reverse` or `sort` will dispatch events
 
 ```js
 
@@ -98,8 +98,7 @@ obj.nested.someVal = 'hello'
 
 const arr = icaro([])
 
-// here you will get the index of the items added or removed
-// or the ones who changed their position
+// here you will get the index of the items added or who changed their position
 arr.listen(function(changes) {
   console.log(changes.get('0')) // 'foo'
   console.llg(changes.get('1')) // 'bar'
