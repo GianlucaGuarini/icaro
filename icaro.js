@@ -100,39 +100,8 @@ const isArray = Symbol();
 const changes = Symbol();
 
 const METHODS_TO_REMAP = [
-  ['sort', 1],
-  ['reverse', 1],
-  ['pop', 1],
-  ['push', 1],
-  ['shift', 1],
-  ['map', 0],
-  ['slice', 0],
-  ['from', 0],
-  ['isArray', 0],
-  ['of', 0],
-  ['concat', 0],
-  ['copyWithin', 0],
-  ['entries', 0],
-  ['every', 0],
-  ['fill', 0],
-  ['filter', 0],
-  ['find', 0],
-  ['findIndex', 0],
-  ['forEach', 0],
-  ['includes', 0],
-  ['indexOf', 0],
-  ['join', 0],
-  ['keys', 0],
-  ['lastIndexOf', 0],
-  ['reduce', 0],
-  ['reduceRight', 0],
-  ['some', 0],
-  ['splice', 0],
-  ['toLocaleString', 0],
-  ['toSource', 0],
-  ['toString', 0],
-  ['unshift', 0],
-  ['values', 0]
+  'sort',
+  'reverse'
 ];
 
 /**
@@ -222,14 +191,13 @@ function define(obj, key, value) {
  * Handle also array changes
  * @param   {array}    options.obj    - array to modify
  * @param   {string}   options.method - method name we want to use to modify the array
- * @param   {boolean}  options.shouldDispatch - will the method trigger a dispatch?
  * @param   {function} options.originalMethod - original array method
  * @param   {array} args - arguments to proxy to the original array method
  * @returns {*} whatever the array method natively returns
  */
-function handleArrayMethod({ obj, method, shouldDispatch, originalMethod }, ...args) {
+function handleArrayMethod({ obj, method, originalMethod }, ...args) {
   const ret = originalMethod.apply(obj, args);
-  if (shouldDispatch) obj[dispatch](method, obj);
+  obj[dispatch](method, obj);
   return ret
 }
 
@@ -270,11 +238,10 @@ function enhance(obj) {
       ICARO_HANDLER.set(obj, i, item);
     });
 
-    METHODS_TO_REMAP.forEach(function([method, shouldDispatch]) {
+    METHODS_TO_REMAP.forEach(function(method) {
       define(obj, method, handleArrayMethod.bind(null, {
         obj,
         method,
-        shouldDispatch,
         originalMethod: obj[method]
       }));
     });

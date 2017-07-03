@@ -32,13 +32,46 @@ describe('icaro core', () => {
     const i = icaro({})
 
     i.arr = []
-    i.arr.listen(function(changes) {
-      assert.ok(changes.get('push'))
+    i.arr.listen(function() {
       done()
     })
 
     i.arr.push('one')
     i.arr.push('two')
+  })
+
+  it('it can listen array changes', function(done) {
+    const arr = icaro(['one', 'two'])
+
+    // can loop
+    arr.listen(function() {
+      arr.unlisten()
+      arr.listen(function() {
+        done()
+      })
+      arr.pop()
+    })
+
+    arr.shift()
+  })
+
+  it('it can loop arrays', function() {
+    const arr = icaro(['one', 'two'])
+    const test = []
+    // can loop
+    arr.forEach(function(item) {
+      assert.ok(typeof item === 'string')
+      test.push(item)
+    })
+
+    assert.ok(test.length === 2)
+
+    for (let item in arr) {
+      assert.ok(typeof item === 'string')
+      test.push(item)
+    }
+
+    assert.ok(test.length === 4)
   })
 
   it('the toJSON call return properly either an object or an array', function() {

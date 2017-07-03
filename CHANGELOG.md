@@ -1,3 +1,7 @@
+# 1.1.3
+
+- _updated_: avoid unecessary array remapping
+
 # 1.1.2
 
 - _fixed_: dispatch the observer events after the changing property is set
