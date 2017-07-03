@@ -98,14 +98,17 @@ obj.nested.someVal = 'hello'
 
 const arr = icaro([])
 
-// here you will get the name of the event that changed your array
+// here you will get the index of the items added or removed
+// or the ones who changed their position
 arr.listen(function(changes) {
-  console.log(changes.get('push')) // ['foo', 'bar']
+  console.log(changes.get('0')) // 'foo'
+  console.llg(changes.get('1')) // 'bar'
   // kill all the listeners this included
   arr.unlisten()
 
   // add a brand new listener recursively.. why not?
   arr.listen(function(changes) {
+    // the change was triggered by a 'reverse' and you will get it here
     console.log(changes.get('reverse')) // ['bar', 'foo']
   })
 

@@ -32,7 +32,9 @@ describe('icaro core', () => {
     const i = icaro({})
 
     i.arr = []
-    i.arr.listen(function() {
+    i.arr.listen(function(changes) {
+      assert.equal(changes.get('0'), 'one')
+      assert.equal(changes.get('1'), 'two')
       done()
     })
 
@@ -44,7 +46,7 @@ describe('icaro core', () => {
     const arr = icaro(['one', 'two'])
 
     // can loop
-    arr.listen(function() {
+    arr.listen(function(changes) {
       arr.unlisten()
       arr.listen(function() {
         done()
