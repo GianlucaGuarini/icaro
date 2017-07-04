@@ -90,7 +90,7 @@ obj.nested.someVal = 'hello'
 
 ```
 
-`icaro` is able also to listen changes in arrays. All the items index position or the mutational eventes like `reverse` or `sort` will dispatch events.
+`icaro` is able also to listen changes in arrays. All the items index position changes or the mutational eventes like `reverse` or `sort` will dispatch events.
 
 ```js
 
