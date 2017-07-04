@@ -1,5 +1,5 @@
 # icaro
-Smart and efficient javascript object observer, ideal for batching DOM updates (__~1kb__)
+A smart and efficient javascript object observer, ideal for batching DOM updates (__~1kb__)
 
 [![Build Status][travis-image]][travis-url]
 [![NPM version][npm-version-image]][npm-url]
@@ -43,11 +43,11 @@ const icaro = require('icaro')
 
 # Performance
 
-`icaro` is really fast [compared to the other reactive libs](https://github.com/GianlucaGuarini/reactive-libs-bench) because it throttles smartly all the state changes
+`icaro` is really fast [compared to the other reactive libs](https://github.com/GianlucaGuarini/reactive-libs-bench) because it smartly throttles all the state changes.
 
 # Usage
 
-`icaro` will let you listen all the changes happening in a javascript object or array grouping them efficiently optimizing the performances of your listeners
+`icaro` will let you listen to all the changes happening in a javascript object or array, grouping them efficiently, and optimizing the performance of your listeners.
 
 ```js
 
@@ -69,7 +69,7 @@ obj.baz = 'dude'
 
 ```
 
-`icaro` will let you also listen nested object, all the non primitive properties added to an `icaro` object will be automatically converted into `icaro` observable objects
+`icaro` will also let you listen to nested objects and all the non primitive properties added to an `icaro` object will be automatically converted into `icaro` observable objects.
 
 ```js
 const obj = icaro({})
@@ -90,7 +90,7 @@ obj.nested.someVal = 'hello'
 
 ```
 
-`icaro` is able also to listen changes in arrays. All the items index position or the mutational eventes like `reverse` or `sort` will dispatch events
+`icaro` is able also to listen changes in arrays. All the items index position or the mutational eventes like `reverse` or `sort` will dispatch events.
 
 ```js
 
@@ -121,7 +121,7 @@ arr.push('bar')
 
 ```
 
-You can also avoid to unsubscribe your callbacks because `icaro` will automatically unlisten them if the object bound to them will be garbage collected
+You can also avoid unsubscribing ("unlisten") because `icaro` will automatically remove event listeners when the object is about to be garbage collected.
 
 # API
 
