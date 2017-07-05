@@ -90,7 +90,7 @@ obj.nested.someVal = 'hello'
 
 ```
 
-`icaro` is able also to listen changes in arrays. All the items index position changes or the mutational eventes like `reverse` or `sort` will dispatch events.
+`icaro` is able also to listen changes in arrays. Any change to the items indexes will dispatch events.
 
 ```js
 
@@ -107,11 +107,12 @@ arr.listen(function(changes) {
 
   // add a brand new listener recursively.. why not?
   arr.listen(function(changes) {
-    // the change was triggered by a 'reverse' and you will get it here
-    console.log(changes.get('reverse')) // ['bar', 'foo']
+    // the change was triggered by a 'reverse' and all indexes were updated
+    console.log(changes.get('0')) // 'bar'
+    console.log(changes.get('1')) // 'foo'
   })
 
-  // dispatch with "reverse"
+  // update all the indexes
   arr.reverse()
 })
 

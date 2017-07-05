@@ -7,11 +7,6 @@ const listeners = new WeakMap(),
   isArray = Symbol(),
   changes = Symbol()
 
-const METHODS_TO_REMAP = [
-  'sort',
-  'reverse'
-]
-
 /**
  * Public api
  * @type {Object}
@@ -96,20 +91,6 @@ function define(obj, key, value) {
 }
 
 /**
- * Handle also array changes
- * @param   {array}    options.obj    - array to modify
- * @param   {string}   options.method - method name we want to use to modify the array
- * @param   {function} options.originalMethod - original array method
- * @param   {array} args - arguments to proxy to the original array method
- * @returns {*} whatever the array method natively returns
- */
-function handleArrayMethod({ obj, method, originalMethod }, ...args) {
-  const ret = originalMethod.apply(obj, args)
-  obj[dispatch](method, obj)
-  return ret
-}
-
-/**
  * Enhance the icaro objects adding some hidden props to them and the API methods
  * @param   {*} obj - anything
  * @returns {*} the object received enhanced with some extra properties
@@ -145,14 +126,6 @@ function enhance(obj) {
       obj[i] = null
       ICARO_HANDLER.set(obj, i, item)
     })
-
-    METHODS_TO_REMAP.forEach(function(method) {
-      define(obj, method, handleArrayMethod.bind(null, {
-        obj,
-        method,
-        originalMethod: obj[method]
-      }))
-    })
   }
 
   return obj
@@ -165,7 +138,7 @@ function enhance(obj) {
  */
 export default function icaro(obj) {
   return new Proxy(
-    enhance(obj),
+    enhance(obj || {}),
     Object.create(ICARO_HANDLER)
   )
 }

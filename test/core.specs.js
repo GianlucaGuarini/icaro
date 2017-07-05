@@ -5,7 +5,7 @@ const icaro = require('../')
 
 describe('icaro core', () => {
   it('it can listen simple object changes', function(done) {
-    const i = icaro({})
+    const i = icaro()
 
     i.listen(function(changes) {
       assert.equal(changes.get('foo'), 'bar')
@@ -16,7 +16,7 @@ describe('icaro core', () => {
   })
 
   it('it groups multiple changes together', function(done) {
-    const i = icaro({})
+    const i = icaro()
 
     i.listen(function(changes) {
       assert.equal(changes.get('foo'), 'bar')
@@ -29,7 +29,7 @@ describe('icaro core', () => {
   })
 
   it('it can listen arrays and sub children', function(done) {
-    const i = icaro({})
+    const i = icaro()
 
     i.arr = []
     i.arr.listen(function(changes) {
@@ -90,12 +90,24 @@ describe('icaro core', () => {
     assert.ok(i[0].listen)
   })
 
-  it('mutational array native methods will dispatch changes', function(done) {
+  it('"Array.reverse" will dispatch changes', function(done) {
     const i = icaro(['foo', 'bar'])
     i.listen(function(changes) {
-      assert.ok(changes.get('reverse'))
+      assert.equal(changes.get('0'), 'bar')
+      assert.equal(changes.get('1'), 'foo')
       done()
     })
     i.reverse()
+  })
+
+  it('"Array.sort" will dispatch changes', function(done) {
+    const i = icaro(['a', 'c', 'b'])
+    i.listen(function(changes) {
+      assert.ok(!changes.get('0')) // 'a' was never moved
+      assert.equal(changes.get('1'), 'b')
+      assert.equal(changes.get('2'), 'c')
+      done()
+    })
+    i.sort()
   })
 })
