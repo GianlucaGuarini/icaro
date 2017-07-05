@@ -121,7 +121,7 @@ function enhance(obj) {
   // remap values and methods
   if (Array.isArray(obj)) {
     obj[isArray] = true
-    // remap the inital array values
+    // remap the initial array values
     obj.forEach(function(item, i) {
       obj[i] = null
       ICARO_HANDLER.set(obj, i, item)

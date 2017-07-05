@@ -2,7 +2,7 @@
 
 - _updated_: avoid unecessary array remapping of the `sort` and `reverse` methods
 - _updated_: simplified the source code
-- _added_: `icaro()` will initialize with an plain empty object if no arguments were passed to it
+- _added_: `icaro()` will initialize with a plain empty object if no arguments were passed to it
 
 # 1.1.3
 
