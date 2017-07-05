@@ -101,7 +101,7 @@ const arr = icaro([])
 // here you will get the index of the items added or who changed their position
 arr.listen(function(changes) {
   console.log(changes.get('0')) // 'foo'
-  console.llg(changes.get('1')) // 'bar'
+  console.log(changes.get('1')) // 'bar'
   // kill all the listeners this included
   arr.unlisten()
 
