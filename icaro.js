@@ -17,7 +17,7 @@
   let registerImmediate;
 
   function setImmediate(callback) {
-      // Callback can either be a function or a string
+    // Callback can either be a function or a string
     if (typeof callback !== 'function') {
       callback = new Function(`${callback}`);
     }
@@ -110,9 +110,7 @@ const API = {
    * @returns {API}
    */
   listen(fn) {
-    if(typeof fn !== "function"){
-      return
-    }
+    if(typeof fn !== 'function') return
     if (!listeners.has(this)) listeners.set(this, []);
     listeners.get(this).push(fn);
 
