@@ -37,9 +37,9 @@ const icaro = require('icaro')
 
 # Demos
 
-- [The Canvas](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.2.0/demos/canvas.html)
-- [The Counter](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.2.0/demos/counter.html)
-- [The Stress](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.2.0/demos/stress.html)
+- [The Canvas](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.2.1/demos/canvas.html)
+- [The Counter](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.2.1/demos/counter.html)
+- [The Stress](https://cdn.rawgit.com/GianlucaGuarini/icaro/v1.2.1/demos/stress.html)
 
 # Performance
 
