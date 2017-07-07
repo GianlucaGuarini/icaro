@@ -216,7 +216,7 @@ function enhance(obj) {
     obj[isArray] = true;
     // remap the initial array values
     obj.forEach(function(item, i) {
-      obj[i] = null;
+      obj[i] = null; // force a reset
       ICARO_HANDLER.set(obj, i, item);
     });
   }

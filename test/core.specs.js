@@ -20,12 +20,15 @@ describe('icaro core', () => {
 
     i.listen({})
 
-    try{
-      i.foo = 'bar'
-    } catch(e){
-      assert.fail(null, null, 'Throws exception if listener is not a valid function')
-    }
-    done()
+    assert.doesNotThrow(
+      () => {
+        i.foo = 'bar'
+      }
+    )
+
+    setTimeout(() => {
+      done()
+    }, 50)
   })
 
   it('it groups multiple changes together', function(done) {
