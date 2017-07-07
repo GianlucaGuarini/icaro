@@ -18,6 +18,9 @@ const API = {
    * @returns {API}
    */
   listen(fn) {
+    if(typeof fn !== "function"){
+      return
+    }
     if (!listeners.has(this)) listeners.set(this, [])
     listeners.get(this).push(fn)
 
