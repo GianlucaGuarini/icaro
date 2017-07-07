@@ -17,11 +17,6 @@
   let registerImmediate;
 
   function setImmediate(callback) {
-    // Callback can either be a function or a string
-    if (typeof callback !== 'function') {
-      callback = new Function(`${callback}`);
-    }
-
     tasksByHandle[nextHandle] = callback;
     registerImmediate(nextHandle);
     return nextHandle++
@@ -110,7 +105,8 @@ const API = {
    * @returns {API}
    */
   listen(fn) {
-    if(typeof fn !== 'function') return this
+    const type = typeof fn;
+    if(type !== 'function') throw `The .listen method accepts typeof 'function', "${type}" are not allowed`
     if (!listeners.has(this)) listeners.set(this, []);
     listeners.get(this).push(fn);
 

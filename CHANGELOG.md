@@ -1,3 +1,7 @@
+# 1.2.1
+
+- _fixed_: the `.listen` method will accept only functions - https://github.com/GianlucaGuarini/icaro/pull/9
+
 # 1.2.0
 
 - _updated_: avoid unecessary array remapping of the `sort` and `reverse` methods

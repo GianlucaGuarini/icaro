@@ -18,7 +18,10 @@ const API = {
    * @returns {API}
    */
   listen(fn) {
-    if(typeof fn !== 'function') return this
+    const type = typeof fn
+    if(type !== 'function')
+      throw `The icaro.listen method accepts as argument "typeof 'function'", "${type}" is not allowed`
+
     if (!listeners.has(this)) listeners.set(this, [])
     listeners.get(this).push(fn)
 
