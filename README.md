@@ -148,7 +148,7 @@ __@returns Object__
 
 # Support
 
-`icaro` uses advanced es6 fetatures like [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy), [WeakMaps](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/WeakMap), [Maps](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Symbols](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol) and __it targets only modern browsers__
+`icaro` uses advanced es6 features like [Proxies](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Proxy), [WeakMaps](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/WeakMap), [Maps](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Map) and [Symbols](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Symbol) and __it targets only modern browsers__
 
 All major evergreen browsers (Edge, Chrome, Safari, Firefox) [should be supported](http://caniuse.com/#search=Proxy)
 
