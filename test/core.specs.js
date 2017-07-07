@@ -15,6 +15,19 @@ describe('icaro core', () => {
     i.foo = 'bar'
   })
 
+  it('does not throws error when listener is not a valid function', function(done) {
+    const i = icaro()
+
+    i.listen({})
+
+    try{
+      i.foo = 'bar'
+    } catch(e){
+      assert.fail(null, null, 'Throws exception if listener is not a valid function')
+    }
+    done()
+  })
+
   it('it groups multiple changes together', function(done) {
     const i = icaro()
 
