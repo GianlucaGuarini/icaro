@@ -11,7 +11,7 @@
   let registerImmediate
 
   function setImmediate(callback) {
-      // Callback can either be a function or a string
+    // Callback can either be a function or a string
     if (typeof callback !== 'function') {
       callback = new Function(`${callback}`)
     }

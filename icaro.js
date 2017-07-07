@@ -17,7 +17,7 @@
   let registerImmediate;
 
   function setImmediate(callback) {
-      // Callback can either be a function or a string
+    // Callback can either be a function or a string
     if (typeof callback !== 'function') {
       callback = new Function(`${callback}`);
     }
@@ -110,6 +110,7 @@ const API = {
    * @returns {API}
    */
   listen(fn) {
+    if(typeof fn !== 'function') return this
     if (!listeners.has(this)) listeners.set(this, []);
     listeners.get(this).push(fn);
 
@@ -213,7 +214,7 @@ function enhance(obj) {
   // remap values and methods
   if (Array.isArray(obj)) {
     obj[isArray] = true;
-    // remap the inital array values
+    // remap the initial array values
     obj.forEach(function(item, i) {
       obj[i] = null;
       ICARO_HANDLER.set(obj, i, item);
