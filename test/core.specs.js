@@ -15,7 +15,7 @@ describe('icaro core', () => {
     i.foo = 'bar'
   })
 
-  it('does not throws error when listener is not a valid function', function() {
+  it('throws error when listener is not a valid function', function() {
     const i = icaro()
 
     assert.throws(
