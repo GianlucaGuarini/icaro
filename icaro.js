@@ -155,7 +155,7 @@ const ICARO_HANDLER = {
     // filter the values that didn't change
     if (target[property] !== value) {
       if (value === Object(value) && !value[isIcaro]) {
-        target[property] = icaro(value);
+        target[property] = icaro(value, target);
       } else {
         target[property] = value;
       }
@@ -184,9 +184,10 @@ function define(obj, key, value) {
 /**
  * Enhance the icaro objects adding some hidden props to them and the API methods
  * @param   {*} obj - anything
+ * @param   {*} parent - parent icaro proxy
  * @returns {*} the object received enhanced with some extra properties
  */
-function enhance(obj) {
+function enhance(obj, parent) {
   // add some "kinda hidden" properties
   Object.assign(obj, {
     [changes]: new Map(),
@@ -200,6 +201,9 @@ function enhance(obj) {
           listeners.get(obj).forEach(function(fn) {fn(obj[changes]);});
           obj[changes].clear();
         });
+        if (parent) {
+          parent[dispatch](parent[changes].size, obj)
+        }
       }
     }
   });
@@ -225,11 +229,12 @@ function enhance(obj) {
 /**
  * Factory function
  * @param   {*} obj - anything can be an icaro Proxy
+ * @param   {*} parent - should be an icaro Proxy
  * @returns {Proxy}
  */
-function icaro(obj) {
+function icaro(obj, parent) {
   return new Proxy(
-    enhance(obj || {}),
+    enhance(obj || {}, parent),
     Object.create(ICARO_HANDLER)
   )
 }
